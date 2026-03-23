@@ -1,20 +1,36 @@
 import json
-import os
+import streamlit as st
 from datetime import datetime
 from copy import deepcopy
+from supabase import create_client
 
-from config.settings import DATA_FILE, DEFAULT_DATA
+from config.settings import DEFAULT_DATA
+
+ROW_ID = 1  # Fila unica para datos compartidos
+
+
+def _get_client():
+    """Devuelve el cliente Supabase usando secrets de Streamlit."""
+    url = st.secrets["supabase"]["url"]
+    key = st.secrets["supabase"]["key"]
+    return create_client(url, key)
 
 
 def cargar_datos():
-    if os.path.exists(DATA_FILE):
-        with open(DATA_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
+    try:
+        client = _get_client()
+        resp = client.table("app_data").select("data").eq("id", ROW_ID).execute()
+        if resp.data:
+            return resp.data[0]["data"]
+    except Exception:
+        pass
     return deepcopy(DEFAULT_DATA)
 
 
 def guardar_datos(data):
     data["meta"]["ultima_modificacion"] = datetime.now().strftime("%Y-%m-%d %H:%M")
-    os.makedirs(os.path.dirname(DATA_FILE), exist_ok=True)
-    with open(DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+    try:
+        client = _get_client()
+        client.table("app_data").upsert({"id": ROW_ID, "data": data}).execute()
+    except Exception:
+        pass

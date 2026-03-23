@@ -8,6 +8,9 @@ venv/
 # Datos locales
 data/inversiones_data.json
 
+# Secrets
+.streamlit/secrets.toml
+
 # IDE
 .vscode/
 .idea/
