@@ -11,6 +11,9 @@ data/inversiones_data.json
 # Secrets
 .streamlit/secrets.toml
 
+# Supabase local
+supabase/
+
 # IDE
 .vscode/
 .idea/
