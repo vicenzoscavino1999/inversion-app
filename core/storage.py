@@ -20,7 +20,7 @@ def cargar_datos():
     try:
         client = _get_client()
         resp = client.table("app_data").select("data").eq("id", ROW_ID).execute()
-        if resp.data:
+        if resp.data and "origen_capital" in resp.data[0].get("data", {}):
             return resp.data[0]["data"]
     except Exception:
         pass
