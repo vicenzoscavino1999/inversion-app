@@ -1,7 +1,7 @@
 import streamlit as st
 from config.settings import PAGE_CONFIG
-from core.storage import cargar_datos
 from core.calculadora import calcular_todo
+from infra.storage import cargar_datos
 from ui.styles import aplicar_estilos, render_header
 from ui.components.cards import tarjeta
 from ui.sidebar import render as render_sidebar

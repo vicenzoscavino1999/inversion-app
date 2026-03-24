@@ -1,8 +1,8 @@
 import streamlit as st
 from copy import deepcopy
 from ui.components.cards import tarjeta
-from core.storage import guardar_datos
 from config.settings import DEFAULT_DATA
+from infra.storage import guardar_datos, obtener_backend_activo
 
 
 def render(data, r):
@@ -22,11 +22,11 @@ def render(data, r):
             st.caption(f"Ultima modificacion: {data['meta']['ultima_modificacion']}")
 
         st.markdown("---")
-        if st.button("Resetear a datos del Excel", type="secondary"):
+        if st.button("Resetear a datos base", type="secondary"):
             st.session_state.data = deepcopy(DEFAULT_DATA)
             guardar_datos(st.session_state.data)
             st.success("Datos reseteados.")
             st.rerun()
 
         st.markdown("---")
-        st.caption("Datos guardados en data/inversiones_data.json")
+        st.caption(f"Persistencia activa: {obtener_backend_activo()}")

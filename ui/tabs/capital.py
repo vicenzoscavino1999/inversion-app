@@ -1,7 +1,7 @@
 import streamlit as st
 from ui.components.cards import seccion
 from ui.components.charts import chart_dona_capital
-from core.storage import guardar_datos
+from infra.storage import guardar_datos
 
 
 def render(data, r):

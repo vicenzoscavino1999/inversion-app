@@ -4,6 +4,7 @@ __pycache__/
 *.egg-info/
 venv/
 .venv/
+.cache-local/
 
 # Datos locales
 data/inversiones_data.json
@@ -12,7 +13,7 @@ data/inversiones_data.json
 .streamlit/secrets.toml
 
 # Supabase local
-supabase/
+.supabase-local/
 
 # IDE
 .vscode/

@@ -2,7 +2,7 @@ import streamlit as st
 from ui.components.cards import tarjeta, seccion
 from ui.components.charts import chart_op_soles, chart_gauge_rentabilidad, chart_dona_devolucion
 from core.calculadora import calcular_todo
-from core.storage import guardar_datos
+from infra.storage import guardar_datos
 
 
 def render(data):
