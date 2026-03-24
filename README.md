@@ -21,6 +21,13 @@ Aplicacion Streamlit para controlar capital, tipo de cambio, compra de MDF y ven
 La app usa `Supabase` cuando hay credenciales validas en `.streamlit/secrets.toml`.
 Si no hay credenciales, guarda en `data/inversiones_data.json`.
 
+### PWA
+
+La app expone `manifest.json` e iconos desde `static/` con `enableStaticServing = true`.
+Eso permite instalarla como PWA desde navegadores compatibles.
+
+Limitacion actual: la app queda instalable, pero no implementa modo offline completo porque Streamlit sigue dependiendo de su runtime web activo.
+
 ### Ejecutar
 
 ```bash

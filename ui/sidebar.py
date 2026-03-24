@@ -30,3 +30,4 @@ def render(data, r):
 
         st.markdown("---")
         st.caption(f"Persistencia activa: {obtener_backend_activo()}")
+        st.caption("PWA: instala la app desde el menu del navegador en Chrome, Edge o Safari.")
